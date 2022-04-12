@@ -1,0 +1,125 @@
+* {
+    font-family: monospace;
+    color: azure;
+}
+
+body {
+    background-color: rgb(23, 20, 20);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+img,.objectImageInput {
+    width: 100%;
+    border: 4px double whitesmoke;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#picksDisplay div,p {
+    margin: 0 2rem 0 2rem;
+}
+
+#picksDisplay p {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-align: center;
+}
+
+#scoresDisplay {
+    flex-direction: column;
+}
+
+#scoreDisplay h2 {
+    font-size: 2rem;
+}
+
+#scoresDisplay p {
+    font-size: 1.5rem;
+}
+
+#scoresDisplay * {
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+#roundsDisplay {
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+#roundsDisplay label {
+    font-size: 1.5rem;
+    margin: 0 1rem 0 0.5rem;
+}
+
+#roundsDisplay select,option {
+    color: black;
+}
+
+#choicesDisplay {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.objectImageInput:hover,#reset:hover {
+    opacity: 0.6;
+    cursor: pointer;
+    transform: translateY(3px);
+}
+
+.objectImageInput:disabled {
+    opacity: 0.6;
+    transform: none;
+}
+
+.objectImageInput {
+    margin: 0.5em 1.5em 0.5em 1.5em;
+}
+
+#choicesWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reset {
+    margin: 1.5rem;
+    width: 100px;
+    height: 40px;
+    color: azure;
+    background-color: crimson;
+    border: 3px solid whitesmoke;
+    font-family: monospace;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+@media (min-width: 518px) { 
+    .objectImageInput {
+        width: 100%;
+    }
+}
+
+@media (min-width : 280px) {
+    .display {
+        flex-wrap: wrap;
+    }
+
+    .objectImageInput {
+        width: 24%;
+    }
+}

@@ -1,0 +1,130 @@
+let blank = 'images/black_background.png';
+
+let choices = [
+    'images/rock.png',
+    'images/paper.png',
+    'images/scissors.png'
+];
+
+let player = {
+    score: 0,
+    choiceDisplay: document.querySelector('#playerPick img'),
+    scoreLabel: document.querySelector('#humanScore'),
+    inputs: {
+        rockImage: document.querySelector('#rock'),
+        paperImage: document.querySelector('#paper'),
+        scissorsImage: document.querySelector('#scissors')
+    }
+};
+
+let computer = {
+    choice: '',
+    score: 0,
+    choiceDisplay: document.querySelector('#computerPick img'),
+    scoreLabel: document.querySelector('#computerScore'),
+    makeAChoice: function () { 
+        this.choice = choices[Math.floor(Math.random() * 3)]; 
+    }
+};
+
+let resetButton = document.querySelector('#reset');
+
+let winningScoreSelection = document.querySelector('#rounds');
+let winningScore = parseInt(winningScoreSelection.value);
+
+let scoresDisplay = document.querySelector('#scoresDisplay');
+
+winningScoreSelection.addEventListener('change', function () {
+    winningScore = parseInt(this.value);
+    reset();
+})
+
+player.inputs.rockImage.addEventListener('click', function () {
+    computer.makeAChoice();
+
+    player.choiceDisplay.src = choices[0];
+    computer.choiceDisplay.src = computer.choice;
+
+    if (computer.choice === choices[1]) {
+        updateScore(computer);
+    } else if (computer.choice === choices[2]) {
+        updateScore(player);
+    }
+
+    decideWinner();
+});
+
+player.inputs.paperImage.addEventListener('click', function () {
+    computer.makeAChoice();
+
+    player.choiceDisplay.src = choices[1];
+    computer.choiceDisplay.src = computer.choice;
+
+    if (computer.choice === choices[0]) {
+        updateScore(player);
+    } else if (computer.choice === choices[2]) {
+        updateScore(computer);
+    }
+
+    decideWinner();
+});
+
+player.inputs.scissorsImage.addEventListener('click', function () {
+    computer.makeAChoice();
+
+    player.choiceDisplay.src = choices[2];
+    computer.choiceDisplay.src = computer.choice;
+
+    if (computer.choice === choices[0]) {
+        updateScore(computer);
+    } else if (computer.choice === choices[1]) {
+        updateScore(player);
+    }
+
+    decideWinner();
+});
+
+resetButton.addEventListener('click', reset);
+
+function updateScore(winner) {
+    winner.score++;
+    winner.scoreLabel.innerText = winner.score;
+}
+
+function decideWinner() {
+    if (winningScore === player.score || winningScore === computer.score) {
+        let winnerLabel = document.createElement('p');
+        
+        for (let key in player.inputs) {
+            player.inputs[key].disabled = true;
+        }
+
+        if (winningScore === player.score) {
+            winnerLabel.innerText = 'You win';
+            winnerLabel.style.color = '#7cfc00';
+        } else {
+            winnerLabel.innerText = 'Computer wins';
+            winnerLabel.style.color = '#dc143c';
+        }
+        
+        scoresDisplay.appendChild(winnerLabel);
+    }
+}
+
+function reset() {
+    for (let key in player.inputs) {
+        player.inputs[key].disabled = false;
+    }
+
+    player.score = 0;
+    player.scoreLabel.innerText = player.score;
+    player.choiceDisplay.src = blank;
+
+    computer.score = 0;
+    computer.scoreLabel.innerText = computer.score;
+    computer.choiceDisplay.src = blank;
+
+    if (scoresDisplay.children.length === 3) {
+        scoresDisplay.removeChild(scoresDisplay.lastChild);  
+    } 
+}
