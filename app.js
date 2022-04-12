@@ -94,10 +94,6 @@ function updateScore(winner) {
 function decideWinner() {
     if (winningScore === player.score || winningScore === computer.score) {
         let winnerLabel = document.createElement('p');
-        
-        for (let key in player.inputs) {
-            player.inputs[key].disabled = true;
-        }
 
         if (winningScore === player.score) {
             winnerLabel.innerText = 'You win';
@@ -106,15 +102,14 @@ function decideWinner() {
             winnerLabel.innerText = 'Computer wins';
             winnerLabel.style.color = '#dc143c';
         }
-        
+
+        togglePlayerInputs(true);
         scoresDisplay.appendChild(winnerLabel);
     }
 }
 
 function reset() {
-    for (let key in player.inputs) {
-        player.inputs[key].disabled = false;
-    }
+    togglePlayerInputs(false);
 
     player.score = 0;
     player.scoreLabel.innerText = player.score;
@@ -127,4 +122,10 @@ function reset() {
     if (scoresDisplay.children.length === 3) {
         scoresDisplay.removeChild(scoresDisplay.lastChild);  
     } 
+}
+
+function togglePlayerInputs(disable) {
+    for (let key in player.inputs) {
+        player.inputs[key].disabled = disable;
+    }
 }
