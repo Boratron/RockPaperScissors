@@ -22,7 +22,7 @@ let computer = {
     score: 0,
     choiceDisplay: document.querySelector('#computerPick img'),
     scoreLabel: document.querySelector('#computerScore'),
-    makeAChoice: function () { 
+    decide() { 
         this.choice = choices[Math.floor(Math.random() * 3)]; 
     }
 };
@@ -40,7 +40,7 @@ winningScoreSelection.addEventListener('change', function () {
 })
 
 player.inputs.rockImage.addEventListener('click', function () {
-    computer.makeAChoice();
+    computer.decide();
 
     player.choiceDisplay.src = choices[0];
     computer.choiceDisplay.src = computer.choice;
@@ -55,7 +55,7 @@ player.inputs.rockImage.addEventListener('click', function () {
 });
 
 player.inputs.paperImage.addEventListener('click', function () {
-    computer.makeAChoice();
+    computer.decide();
 
     player.choiceDisplay.src = choices[1];
     computer.choiceDisplay.src = computer.choice;
@@ -70,7 +70,7 @@ player.inputs.paperImage.addEventListener('click', function () {
 });
 
 player.inputs.scissorsImage.addEventListener('click', function () {
-    computer.makeAChoice();
+    computer.decide();
 
     player.choiceDisplay.src = choices[2];
     computer.choiceDisplay.src = computer.choice;
