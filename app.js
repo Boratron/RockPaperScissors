@@ -1,12 +1,12 @@
-let blank = 'images/black_background.png';
+const blank = 'images/black_background.png';
 
-let choices = [
+const choices = [
     'images/rock.png',
     'images/paper.png',
     'images/scissors.png'
 ];
 
-let player = {
+const player = {
     score: 0,
     choiceDisplay: document.querySelector('#playerPick img'),
     scoreLabel: document.querySelector('#humanScore'),
@@ -17,7 +17,7 @@ let player = {
     }
 };
 
-let computer = {
+const computer = {
     choice: '',
     score: 0,
     choiceDisplay: document.querySelector('#computerPick img'),
@@ -27,12 +27,12 @@ let computer = {
     }
 };
 
-let resetButton = document.querySelector('#reset');
+const resetButton = document.querySelector('#reset');
 
-let winningScoreSelection = document.querySelector('#rounds');
+const winningScoreSelection = document.querySelector('#rounds');
 let winningScore = parseInt(winningScoreSelection.value);
 
-let scoresDisplay = document.querySelector('#scoresDisplay');
+const scoresDisplay = document.querySelector('#scoresDisplay');
 
 winningScoreSelection.addEventListener('change', function () {
     winningScore = parseInt(this.value);
