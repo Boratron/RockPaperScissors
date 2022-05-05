@@ -74,13 +74,13 @@ function decideWinner() {
             winnerLabel.style.color = '#dc143c';
         }
 
-        togglePlayerInputs(true);
+        toggleHumanInputs(true);
         scoresDisplay.appendChild(winnerLabel);
     }
 }
 
 function reset() {
-    togglePlayerInputs(false);
+    toggleHumanInputs(false);
 
     humanModel.score = 0;
     humanView.scoreLabel.innerText = humanModel.score;
@@ -95,7 +95,7 @@ function reset() {
     } 
 }
 
-function togglePlayerInputs(disable) {
+function toggleHumanInputs(disable) {
     for (let key in humanView.inputs) {
         humanView.inputs[key].disabled = disable;
     }
