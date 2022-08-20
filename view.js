@@ -1,15 +1,15 @@
 class PlayerView {
-	constructor(choiceDisplayQuery, scoreLabelQuery) {
-		this.choiceDisplay = document.querySelector(choiceDisplayQuery);
-		this.scoreLabel = document.querySelector(scoreLabelQuery);
+	constructor(pickDisplayQuery, scoreSpanQuery) {
+		this.pickDisplay = document.querySelector(pickDisplayQuery);
+		this.scoreSpan = document.querySelector(scoreSpanQuery);
 	}
 
 	displayPick(src) {
-		this.choiceDisplay.src = src;
+		this.pickDisplay.src = src;
 	}
 
 	displayScore(winnerModel) {
-		this.scoreLabel.innerText = winnerModel.score;
+		this.scoreSpan.innerText = winnerModel.score;
 	}
 }
 
@@ -17,9 +17,9 @@ class HumanView extends PlayerView {
 	constructor() {
 		super("#humanPick img", "#humanScore");
 		this.inputs = {
-			rockImage: document.querySelector("#rock"),
-			paperImage: document.querySelector("#paper"),
-			scissorsImage: document.querySelector("#scissors"),
+			rockImage: document.querySelector("#rockInputImage"),
+			paperImage: document.querySelector("#paperInputImage"),
+			scissorsImage: document.querySelector("#scissorsInputImage"),
 		};
 	}
 }
@@ -32,7 +32,7 @@ class ComputerView extends PlayerView {
 
 class View {
 	constructor() {
-		this.resetButton = document.querySelector("#reset");
+		this.resetButton = document.querySelector("#resetButton");
 		this.winningScoreSelection = document.querySelector("#rounds");
 		this.scoresDisplay = document.querySelector("#scoresDisplay");
 	}
