@@ -1,6 +1,10 @@
 // initializations
-const blankBackground = "images/black_background.png";
-const choices = ["images/rock.png", "images/paper.png", "images/scissors.png"];
+const blankBackground = "./images/black_background.png";
+const choices = [
+	"./images/rock.png",
+	"./images/paper.png",
+	"./images/scissors.png",
+];
 
 const human = {
 	model: new HumanModel(),
