@@ -36,4 +36,19 @@ class View {
 		this.winningScoreSelection = document.querySelector("#rounds");
 		this.scoresDisplay = document.querySelector("#scoresDisplay");
 	}
+
+	displayWinner(text, color) {
+		const winnerLabel = document.createElement("p");
+
+		winnerLabel.innerText = text;
+		winnerLabel.style.color = color;
+
+		this.scoresDisplay.appendChild(winnerLabel);
+	}
+
+	removeWinnerDisplay() {
+		if (this.scoresDisplay.children.length === 3) {
+			this.scoresDisplay.removeChild(this.scoresDisplay.lastChild);
+		}
+	}
 }

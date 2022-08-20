@@ -35,7 +35,7 @@ human.view.inputs.rockImage.addEventListener("click", () => {
 	decideWinner();
 });
 
-human.view.inputs.paperImage.addEventListener("click", function () {
+human.view.inputs.paperImage.addEventListener("click", () => {
 	let computerChoiceIndex = computer.model.decide();
 
 	human.view.displayPick(choices[1]);
@@ -50,7 +50,7 @@ human.view.inputs.paperImage.addEventListener("click", function () {
 	decideWinner();
 });
 
-human.view.inputs.scissorsImage.addEventListener("click", function () {
+human.view.inputs.scissorsImage.addEventListener("click", () => {
 	let computerChoiceIndex = computer.model.decide();
 
 	human.view.displayPick(choices[2]);
@@ -74,24 +74,25 @@ function updateScore(winner) {
 }
 
 function decideWinner() {
-	let winningScore = parseInt(view.winningScoreSelection.value);
+	const winningScore = parseInt(view.winningScoreSelection.value);
 
 	if (
 		winningScore === human.model.score ||
 		winningScore === computer.model.score
 	) {
-		let winnerLabel = document.createElement("p");
+		let text = "";
+		let color = "";
 
 		if (winningScore === human.model.score) {
-			winnerLabel.innerText = "You win";
-			winnerLabel.style.color = "#7cfc00";
+			text = "You win";
+			color = "#7cfc00";
 		} else {
-			winnerLabel.innerText = "Computer wins";
-			winnerLabel.style.color = "#dc143c";
+			text = "Computer wins";
+			color = "#dc143c";
 		}
 
+		view.displayWinner(text, color);
 		toggleHumanInputs(true);
-		view.scoresDisplay.appendChild(winnerLabel);
 	}
 }
 
@@ -106,9 +107,7 @@ function reset() {
 	computer.view.displayScore(computer.model);
 	computer.view.displayPick(blankBackground);
 
-	if (view.scoresDisplay.children.length === 3) {
-		view.scoresDisplay.removeChild(view.scoresDisplay.lastChild);
-	}
+	view.removeWinnerDisplay();
 }
 
 function toggleHumanInputs(disable) {
