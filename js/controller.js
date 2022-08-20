@@ -80,18 +80,12 @@ function decideWinner() {
 		winningScore === human.model.score ||
 		winningScore === computer.model.score
 	) {
-		let text = "";
-		let color = "";
-
 		if (winningScore === human.model.score) {
-			text = "You win";
-			color = "#7cfc00";
+			view.displayWinner(human.model);
 		} else {
-			text = "Computer wins";
-			color = "#dc143c";
+			view.displayWinner(computer.model);
 		}
 
-		view.displayWinner(text, color);
 		toggleHumanInputs(true);
 	}
 }

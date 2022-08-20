@@ -1,18 +1,20 @@
 class PlayerModel {
-	constructor() {
+	constructor(winnerText, winnerColor) {
 		this.score = 0;
+		this.winnerText = winnerText;
+		this.winnerColor = winnerColor;
 	}
 }
 
 class HumanModel extends PlayerModel {
-	constructor() {
-		super();
+	constructor(winnerText = "You Win", winnerColor = "#7cfc00") {
+		super(winnerText, winnerColor);
 	}
 }
 
 class ComputerModel extends PlayerModel {
-	constructor() {
-		super();
+	constructor(winnerText = "Computer Wins", winnerColor = "#dc143c") {
+		super(winnerText, winnerColor);
 	}
 
 	decide() {

@@ -37,11 +37,11 @@ class View {
 		this.scoresDisplay = document.querySelector("#scoresDisplay");
 	}
 
-	displayWinner(text, color) {
+	displayWinner(winnerModel) {
 		const winnerLabel = document.createElement("p");
 
-		winnerLabel.innerText = text;
-		winnerLabel.style.color = color;
+		winnerLabel.innerText = winnerModel.winnerText;
+		winnerLabel.style.color = winnerModel.winnerColor;
 
 		this.scoresDisplay.appendChild(winnerLabel);
 	}
