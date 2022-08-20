@@ -1,102 +1,114 @@
-const blank = 'images/black_background.png';
+// initializations
+const blankBackground = "images/black_background.png";
+const choices = ["images/rock.png", "images/paper.png", "images/scissors.png"];
 
-const choices = [
-    'images/rock.png',
-    'images/paper.png',
-    'images/scissors.png'
-];
+const human = {
+	model: new HumanModel(),
+	view: new HumanView(),
+};
+const computer = {
+	model: new ComputerModel(),
+	view: new ComputerView(),
+};
 
-winningScoreSelection.addEventListener('change', reset);
+const view = new View();
 
-humanView.inputs.rockImage.addEventListener('click', function () {
-    let computerChoiceIndex = computerModel.decide();
+// events
+view.winningScoreSelection.addEventListener("change", reset);
 
-    humanView.choiceDisplay.src = choices[0];
-    computerView.choiceDisplay.src = choices[computerChoiceIndex];
+human.view.inputs.rockImage.addEventListener("click", () => {
+	let computerChoiceIndex = computer.model.decide();
 
-    if (choices[computerChoiceIndex] === choices[1]) {
-        updateScore(computerModel, computerView);
-    } else if (choices[computerChoiceIndex] === choices[2]) {
-        updateScore(humanModel, humanView);
-    }
+	human.view.displayPick(choices[0]);
+	computer.view.displayPick(choices[computerChoiceIndex]);
 
-    decideWinner();
+	if (choices[computerChoiceIndex] === choices[1]) {
+		updateScore(computer);
+	} else if (choices[computerChoiceIndex] === choices[2]) {
+		updateScore(human);
+	}
+
+	decideWinner();
 });
 
-humanView.inputs.paperImage.addEventListener('click', function () {
-    let computerChoiceIndex = computerModel.decide();
+human.view.inputs.paperImage.addEventListener("click", function () {
+	let computerChoiceIndex = computer.model.decide();
 
-    humanView.choiceDisplay.src = choices[1];
-    computerView.choiceDisplay.src = choices[computerChoiceIndex];
+	human.view.displayPick(choices[1]);
+	computer.view.displayPick(choices[computerChoiceIndex]);
 
-    if (choices[computerChoiceIndex] === choices[0]) {
-        updateScore(humanModel, humanView);
-    } else if (choices[computerChoiceIndex] === choices[2]) {
-        updateScore(computerModel, computerView);
-    }
+	if (choices[computerChoiceIndex] === choices[0]) {
+		updateScore(human);
+	} else if (choices[computerChoiceIndex] === choices[2]) {
+		updateScore(computer);
+	}
 
-    decideWinner();
+	decideWinner();
 });
 
-humanView.inputs.scissorsImage.addEventListener('click', function () {
-    let computerChoiceIndex = computerModel.decide();
-    
-    humanView.choiceDisplay.src = choices[2];
-    computerView.choiceDisplay.src = choices[computerChoiceIndex];
+human.view.inputs.scissorsImage.addEventListener("click", function () {
+	let computerChoiceIndex = computer.model.decide();
 
-    if (choices[computerChoiceIndex] === choices[0]) {
-        updateScore(computerModel, computerView);
-    } else if (choices[computerChoiceIndex] === choices[1]) {
-        updateScore(humanModel, humanView);
-    }
+	human.view.displayPick(choices[2]);
+	computer.view.displayPick(choices[computerChoiceIndex]);
 
-    decideWinner();
+	if (choices[computerChoiceIndex] === choices[0]) {
+		updateScore(computer);
+	} else if (choices[computerChoiceIndex] === choices[1]) {
+		updateScore(human);
+	}
+
+	decideWinner();
 });
 
-resetButton.addEventListener('click', reset);
+view.resetButton.addEventListener("click", reset);
 
-function updateScore(winnerModel, winnerView) {
-    winnerModel.score++;
-    winnerView.scoreLabel.innerText = winnerModel.score;
+// functions
+function updateScore(winner) {
+	winner.model.score++;
+	winner.view.displayScore(winner.model);
 }
 
 function decideWinner() {
-    let winningScore = parseInt(winningScoreSelection.value);
+	let winningScore = parseInt(view.winningScoreSelection.value);
 
-    if (winningScore === humanModel.score || winningScore === computerModel.score) {
-        let winnerLabel = document.createElement('p');
+	if (
+		winningScore === human.model.score ||
+		winningScore === computer.model.score
+	) {
+		let winnerLabel = document.createElement("p");
 
-        if (winningScore === humanModel.score) {
-            winnerLabel.innerText = 'You win';
-            winnerLabel.style.color = '#7cfc00';
-        } else {
-            winnerLabel.innerText = 'Computer wins';
-            winnerLabel.style.color = '#dc143c';
-        }
+		if (winningScore === human.model.score) {
+			winnerLabel.innerText = "You win";
+			winnerLabel.style.color = "#7cfc00";
+		} else {
+			winnerLabel.innerText = "Computer wins";
+			winnerLabel.style.color = "#dc143c";
+		}
 
-        toggleHumanInputs(true);
-        scoresDisplay.appendChild(winnerLabel);
-    }
+		toggleHumanInputs(true);
+		view.scoresDisplay.appendChild(winnerLabel);
+	}
 }
 
 function reset() {
-    toggleHumanInputs(false);
+	toggleHumanInputs(false);
 
-    humanModel.score = 0;
-    humanView.scoreLabel.innerText = humanModel.score;
-    humanView.choiceDisplay.src = blank;
+	human.model.score = 0;
+	human.view.displayScore(human.model);
+	human.view.displayPick(blankBackground);
 
-    computerModel.score = 0;
-    computerView.scoreLabel.innerText = computerModel.score;
-    computerView.choiceDisplay.src = blank;
+	computer.model.score = 0;
+	computer.view.displayScore(computer.model);
+	computer.view.displayPick(blankBackground);
 
-    if (scoresDisplay.children.length === 3) {
-        scoresDisplay.removeChild(scoresDisplay.lastChild);  
-    } 
+	if (view.scoresDisplay.children.length === 3) {
+		view.scoresDisplay.removeChild(view.scoresDisplay.lastChild);
+	}
 }
 
 function toggleHumanInputs(disable) {
-    for (let key in humanView.inputs) {
-        humanView.inputs[key].disabled = disable;
-    }
+	for (let key in human.view.inputs) {
+		human.view.inputs[key].disabled = disable;
+	}
 }
