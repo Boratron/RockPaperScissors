@@ -40,8 +40,8 @@ class View {
 	displayWinner(winnerModel) {
 		const winnerLabel = document.createElement("p");
 
-		winnerLabel.innerText = winnerModel.winnerText;
-		winnerLabel.style.color = winnerModel.winnerColor;
+		winnerLabel.innerText = winnerModel.winnerLabel.text;
+		winnerLabel.style.color = winnerModel.winnerLabel.color;
 
 		this.scoresDisplay.appendChild(winnerLabel);
 	}
