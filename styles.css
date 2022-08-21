@@ -7,124 +7,135 @@ body {
 	background-color: rgb(23, 20, 20);
 }
 
-h1,
-h2 {
-	text-align: center;
-}
+@media (min-width: 280px) {
+	#theGame {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
 
-h1 {
-	margin: 0;
-}
+	h1,
+	h2 {
+		text-align: center;
+	}
 
-img,
-.objectImageInput {
-	width: 100%;
-	border: 4px double whitesmoke;
-}
+	h1 {
+		margin: 0;
+	}
 
-#wrapper {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
+	#picksDisplay {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 
-#picksDisplay div,
-p {
-	margin: 0 2rem 0 2rem;
-}
+	#picksDisplay img {
+		border: 2px ridge whitesmoke;
+		background-color: black;
+		padding: 1rem;
+	}
 
-#picksDisplay p {
-	font-size: 1.5rem;
-	font-weight: bolder;
-	text-align: center;
-}
+	#picksDisplay div,
+	em {
+		margin: 0 2rem 0 2rem;
+	}
 
-#scoresDisplay {
-	flex-direction: column;
-}
+	#picksDisplay em {
+		font-size: 1.5rem;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+		font-weight: bolder;
+		text-align: center;
+	}
 
-#scoreDisplay h2 {
-	font-size: 2rem;
-}
+	#scoresDisplay {
+		flex-direction: column;
+	}
 
-#scoresDisplay p {
-	font-size: 1.5rem;
-}
+	#scoreDisplay h2 {
+		font-size: 2rem;
+	}
 
-#scoresDisplay * {
-	margin: 0.5rem 0 0.5rem 0;
-}
+	#scoresDisplay p {
+		font-size: 1.5rem;
+	}
 
-#roundsDisplay {
-	margin: 0.5rem 0 0.5rem 0;
-}
+	#scoresDisplay * {
+		margin: 0.5rem 0 0.5rem 0;
+	}
 
-#roundsDisplay label {
-	font-size: 1.5rem;
-	margin: 0 1rem 0 0.5rem;
-}
+	#roundsDisplay {
+		margin: 0.5rem 0 0.5rem 0;
+	}
 
-#roundsDisplay select,
-option {
-	color: black;
-}
+	#roundsDisplay label {
+		font-size: 1.5rem;
+		margin: 0 1rem 0 0.5rem;
+	}
 
-#choicesDisplay {
-	flex-direction: column;
-	justify-content: center;
-}
+	#roundsDisplay select,
+	option {
+		color: black;
+	}
 
-.objectImageInput:hover,
-#resetButton:hover {
-	opacity: 0.6;
-	cursor: pointer;
-	transform: translateY(3px);
-}
+	#choicesDisplay {
+		flex-direction: column;
+		justify-content: center;
+	}
 
-.objectImageInput:disabled {
-	opacity: 0.6;
-	transform: none;
-}
-
-.objectImageInput {
-	margin: 0.5em 1.5em 0.5em 1.5em;
-}
-
-#choicesWrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-#resetButton {
-	margin: 1.5rem;
-	width: 100px;
-	height: 40px;
-	color: azure;
-	background-color: crimson;
-	border: 3px solid whitesmoke;
-	font-family: monospace;
-}
-
-.display {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0.5rem;
-}
-
-@media (min-width: 518px) {
 	.objectImageInput {
 		width: 100%;
+		background-color: black;
+		border: 4px groove whitesmoke;
+		border-radius: 25px;
+		margin: 0.5em 1.5em 0.5em 1.5em;
+		padding: 0.5rem;
+	}
+
+	.objectImageInput:hover,
+	#resetButton:hover {
+		opacity: 0.6;
+		cursor: pointer;
+		transform: translateY(3px);
+	}
+
+	.objectImageInput:disabled {
+		opacity: 0.6;
+		transform: none;
+	}
+
+	#choicesWrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#resetButtonWrapper {
+		text-align: center;
+	}
+
+	#resetButton {
+		margin: 1.5rem;
+		width: 100px;
+		height: 40px;
+		color: azure;
+		background-color: brown;
+		border: 3px ridge whitesmoke;
+		border-radius: 20px;
+		font-family: monospace;
+	}
+
+	.display {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0.5rem;
 	}
 }
 
-@media (min-width: 280px) {
-	.display {
-		flex-wrap: wrap;
-	}
-
-	.objectImageInput {
-		width: 24%;
+@media (min-width: 523px) {
+	#picksDisplay {
+		flex-direction: row;
 	}
 }
