@@ -1,15 +1,15 @@
 class PlayerView {
 	constructor(pickDisplayQuery, scoreSpanQuery) {
-		this.pickDisplay = document.querySelector(pickDisplayQuery);
-		this.scoreSpan = document.querySelector(scoreSpanQuery);
+		this.pickDisplay = $(pickDisplayQuery);
+		this.scoreSpan = $(scoreSpanQuery);
 	}
 
 	displayPick(src) {
-		this.pickDisplay.src = src;
+		this.pickDisplay.attr("src", src);
 	}
 
 	displayScore(winnerModel) {
-		this.scoreSpan.innerText = winnerModel.score;
+		this.scoreSpan.text(winnerModel.score);
 	}
 }
 
@@ -17,9 +17,9 @@ class HumanView extends PlayerView {
 	constructor() {
 		super("#humanPick img", "#humanScore");
 		this.inputs = {
-			rockImage: document.querySelector("#rockInputImage"),
-			paperImage: document.querySelector("#paperInputImage"),
-			scissorsImage: document.querySelector("#scissorsInputImage"),
+			rockImage: $("#rockInputImage"),
+			paperImage: $("#paperInputImage"),
+			scissorsImage: $("#scissorsInputImage"),
 		};
 	}
 }
@@ -32,23 +32,22 @@ class ComputerView extends PlayerView {
 
 class View {
 	constructor() {
-		this.resetButton = document.querySelector("#resetButton");
-		this.winningScoreSelection = document.querySelector("#rounds");
-		this.scoresDisplay = document.querySelector("#scoresDisplay");
+		this.resetButton = $("#resetButton");
+		this.winningScoreSelection = $("#rounds");
+		this.scoresDisplay = $("#scoresDisplay");
 	}
 
 	displayWinner(winnerModel) {
-		const winnerLabel = document.createElement("p");
+		const winnerLabel = $("<p></p>");
+		winnerLabel.text(winnerModel.winnerLabel.text);
+		winnerLabel.css("color", winnerModel.winnerLabel.color);
 
-		winnerLabel.innerText = winnerModel.winnerLabel.text;
-		winnerLabel.style.color = winnerModel.winnerLabel.color;
-
-		this.scoresDisplay.appendChild(winnerLabel);
+		this.scoresDisplay.append(winnerLabel);
 	}
 
 	removeWinnerDisplay() {
-		if (this.scoresDisplay.children.length === 3) {
-			this.scoresDisplay.removeChild(this.scoresDisplay.lastChild);
+		if (this.scoresDisplay.children().length === 3) {
+			this.scoresDisplay.children().last().remove();
 		}
 	}
 }

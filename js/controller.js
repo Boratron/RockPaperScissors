@@ -1,3 +1,11 @@
+$(document).ready(function () {
+	console.log("document loaded!");
+});
+
+$(window).ready(function () {
+	console.log("window loaded!");
+});
+
 // initializations
 const blankBackground = "./images/black_background.png";
 const choices = [
@@ -18,9 +26,9 @@ const computer = {
 const view = new View();
 
 // events
-view.winningScoreSelection.addEventListener("change", reset);
+view.winningScoreSelection.change(reset);
 
-human.view.inputs.rockImage.addEventListener("click", () => {
+human.view.inputs.rockImage.click(function () {
 	let computerChoiceIndex = computer.model.decide();
 
 	human.view.displayPick(choices[0]);
@@ -35,7 +43,7 @@ human.view.inputs.rockImage.addEventListener("click", () => {
 	decideWinner();
 });
 
-human.view.inputs.paperImage.addEventListener("click", () => {
+human.view.inputs.paperImage.click(function () {
 	let computerChoiceIndex = computer.model.decide();
 
 	human.view.displayPick(choices[1]);
@@ -50,7 +58,7 @@ human.view.inputs.paperImage.addEventListener("click", () => {
 	decideWinner();
 });
 
-human.view.inputs.scissorsImage.addEventListener("click", () => {
+human.view.inputs.scissorsImage.click(function () {
 	let computerChoiceIndex = computer.model.decide();
 
 	human.view.displayPick(choices[2]);
@@ -65,7 +73,7 @@ human.view.inputs.scissorsImage.addEventListener("click", () => {
 	decideWinner();
 });
 
-view.resetButton.addEventListener("click", reset);
+view.resetButton.click(reset);
 
 // functions
 function updateScore(winner) {
@@ -74,7 +82,7 @@ function updateScore(winner) {
 }
 
 function decideWinner() {
-	const winningScore = parseInt(view.winningScoreSelection.value);
+	const winningScore = parseInt(view.winningScoreSelection.val());
 
 	if (
 		winningScore === human.model.score ||
@@ -106,6 +114,7 @@ function reset() {
 
 function toggleHumanInputs(disable) {
 	for (let key in human.view.inputs) {
-		human.view.inputs[key].disabled = disable;
+		// human.view.inputs[key].disabled = disable;
+		human.view.inputs[key].attr("disabled", disable);
 	}
 }
