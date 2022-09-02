@@ -114,7 +114,6 @@ function reset() {
 
 function toggleHumanInputs(disable) {
 	for (let key in human.view.inputs) {
-		// human.view.inputs[key].disabled = disable;
 		human.view.inputs[key].attr("disabled", disable);
 	}
 }

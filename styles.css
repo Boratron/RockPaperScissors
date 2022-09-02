@@ -15,8 +15,19 @@ body {
 	}
 
 	h1,
-	h2 {
+	h2,
+	p,
+	figcaption {
 		text-align: center;
+	}
+
+	figure {
+		margin: 25px 15px 15px 15px;
+	}
+
+	figcaption {
+		font-size: 23px;
+		margin-bottom: 12px;
 	}
 
 	h1 {
@@ -57,7 +68,8 @@ body {
 		font-size: 2rem;
 	}
 
-	#scoresDisplay p {
+	#scoresDisplay p,
+	#choicesDisplay p {
 		font-size: 1.5rem;
 	}
 
@@ -89,7 +101,7 @@ body {
 		background-color: black;
 		border: 4px groove whitesmoke;
 		border-radius: 25px;
-		margin: 0.5em 1.5em 0.5em 1.5em;
+		margin: 0.5em;
 		padding: 0.5rem;
 	}
 
@@ -100,8 +112,13 @@ body {
 		transform: translateY(3px);
 	}
 
+	.objectImageInput:active {
+		box-shadow: 5px 5px 5px whitesmoke;
+	}
+
 	.objectImageInput:disabled {
 		opacity: 0.6;
+		box-shadow: none;
 		transform: none;
 	}
 
@@ -120,10 +137,14 @@ body {
 		width: 100px;
 		height: 40px;
 		color: azure;
-		background-color: brown;
+		background-color: darkred;
 		border: 3px ridge whitesmoke;
 		border-radius: 20px;
 		font-family: monospace;
+	}
+
+	#resetButton:active {
+		box-shadow: 3px 3px 5px darkred;
 	}
 
 	.display {
@@ -137,5 +158,9 @@ body {
 @media (min-width: 523px) {
 	#picksDisplay {
 		flex-direction: row;
+	}
+
+	.objectImageInput {
+		margin: 0.5em 1.5em 0.5em 1.5em;
 	}
 }
