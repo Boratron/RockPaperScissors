@@ -1,12 +1,3 @@
-$(document).ready(function () {
-	console.log("document loaded!");
-});
-
-$(window).ready(function () {
-	console.log("window loaded!");
-});
-
-// initializations
 const blankBackground = "./images/black_background.png";
 const choices = [
 	"./images/rock.png",
@@ -25,14 +16,15 @@ const computer = {
 
 const view = new View();
 
-// events
-view.winningScoreSelection.change(reset);
+// -- events -- //
+view.rounds.addEventListener("change", reset);
+view.reset.addEventListener("click", reset);
 
-human.view.inputs.rockImage.click(function () {
+human.view.choices.rock.addEventListener("click", () => {
 	let computerChoiceIndex = computer.model.decide();
 
-	human.view.displayPick(choices[0]);
-	computer.view.displayPick(choices[computerChoiceIndex]);
+	human.view.displayChoice(choices[0]);
+	computer.view.displayChoice(choices[computerChoiceIndex]);
 
 	if (choices[computerChoiceIndex] === choices[1]) {
 		updateScore(computer);
@@ -43,11 +35,11 @@ human.view.inputs.rockImage.click(function () {
 	decideWinner();
 });
 
-human.view.inputs.paperImage.click(function () {
+human.view.choices.paper.addEventListener("click", () => {
 	let computerChoiceIndex = computer.model.decide();
 
-	human.view.displayPick(choices[1]);
-	computer.view.displayPick(choices[computerChoiceIndex]);
+	human.view.displayChoice(choices[1]);
+	computer.view.displayChoice(choices[computerChoiceIndex]);
 
 	if (choices[computerChoiceIndex] === choices[0]) {
 		updateScore(human);
@@ -58,11 +50,11 @@ human.view.inputs.paperImage.click(function () {
 	decideWinner();
 });
 
-human.view.inputs.scissorsImage.click(function () {
+human.view.choices.scissors.addEventListener("click", () => {
 	let computerChoiceIndex = computer.model.decide();
 
-	human.view.displayPick(choices[2]);
-	computer.view.displayPick(choices[computerChoiceIndex]);
+	human.view.displayChoice(choices[2]);
+	computer.view.displayChoice(choices[computerChoiceIndex]);
 
 	if (choices[computerChoiceIndex] === choices[0]) {
 		updateScore(computer);
@@ -73,16 +65,14 @@ human.view.inputs.scissorsImage.click(function () {
 	decideWinner();
 });
 
-view.resetButton.click(reset);
-
-// functions
-function updateScore(winner) {
+// -- functions -- //
+function updateScore(winner: typeof human | typeof computer) {
 	winner.model.score++;
 	winner.view.displayScore(winner.model);
 }
 
 function decideWinner() {
-	const winningScore = parseInt(view.winningScoreSelection.val());
+	const winningScore = parseInt(view.rounds.value);
 
 	if (
 		winningScore === human.model.score ||
@@ -94,27 +84,26 @@ function decideWinner() {
 			view.displayWinner(computer.model);
 		}
 
-		toggleHumanInputs(true);
+		toggleButtonsState(true);
 	}
 }
 
 function reset() {
-	toggleHumanInputs(false);
+	toggleButtonsState(false);
 
 	human.model.score = 0;
 	human.view.displayScore(human.model);
-	human.view.displayPick(blankBackground);
+	human.view.displayChoice(blankBackground);
 
 	computer.model.score = 0;
 	computer.view.displayScore(computer.model);
-	computer.view.displayPick(blankBackground);
+	computer.view.displayChoice(blankBackground);
 
 	view.removeWinnerDisplay();
 }
 
-function toggleHumanInputs(disable) {
-	for (let key in human.view.inputs) {
-		// human.view.inputs[key].disabled = disable;
-		human.view.inputs[key].attr("disabled", disable);
+function toggleButtonsState(disable: boolean) {
+	for (let key in human.view.choices) {
+		human.view.choices[key].disabled = disable;
 	}
 }

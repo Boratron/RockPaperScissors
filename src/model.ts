@@ -1,5 +1,8 @@
 class PlayerModel {
-	constructor(winnerText, winnerColor) {
+	score: number;
+	winnerLabel: { text: string; color: string };
+
+	constructor(winnerText: string, winnerColor: string) {
 		this.score = 0;
 		this.winnerLabel = {
 			text: winnerText,
