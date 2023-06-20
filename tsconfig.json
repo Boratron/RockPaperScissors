@@ -1,8 +1,10 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist",
+		"outDir": "./public",
 		"allowJs": true,
-		"target": "es5"
+		"target": "ES6",
+		"rootDir": "./src",
+		"module": "ES2015"
 	},
 	"include": ["./src/**/*"]
 }

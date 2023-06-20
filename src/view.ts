@@ -1,3 +1,5 @@
+import { PlayerModel } from "./model.js";
+
 class PlayerView {
 	playerChoice: HTMLImageElement;
 	score: HTMLSpanElement;
@@ -16,7 +18,7 @@ class PlayerView {
 	}
 }
 
-class HumanView extends PlayerView {
+export class HumanView extends PlayerView {
 	choices: {
 		rock: HTMLButtonElement;
 		paper: HTMLButtonElement;
@@ -32,13 +34,13 @@ class HumanView extends PlayerView {
 	}
 }
 
-class ComputerView extends PlayerView {
+export class ComputerView extends PlayerView {
 	constructor() {
 		super("#computer-choice img", "#computer-score");
 	}
 }
 
-class View {
+export class View {
 	reset: HTMLButtonElement;
 	rounds: HTMLSelectElement;
 	scores: HTMLDivElement;
