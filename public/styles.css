@@ -1,0 +1,183 @@
+* {
+	font-family: monospace;
+	color: azure;
+}
+
+body {
+	background-color: rgb(23, 20, 20);
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+h1 {
+	text-align: center;
+	margin-inline: 0;
+	margin-top: 2rem;
+}
+
+.display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5rem;
+}
+
+#player-choice {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#player-choice img {
+	border: 2px ridge whitesmoke;
+	background-color: black;
+	padding: 1rem;
+}
+
+#player-choice b {
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 2rem 2rem 1rem 2rem;
+}
+
+#player-choice p {
+	font-size: 2rem;
+	text-align: center;
+}
+
+#scores {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#scores * {
+	margin: 0.5rem 0 0.5rem 0;
+}
+
+#scores p:first-child {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+#scores p:last-child {
+	font-size: 1.5rem;
+	margin-top: 1rem;
+}
+
+.field-group {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-block: 1rem;
+}
+
+.field-group label {
+	font-size: 1.5rem;
+	margin-inline: 1rem;
+}
+
+.field-group select,
+option {
+	color: black;
+}
+
+#player-choices {
+	text-align: center;
+}
+
+#player-choices h2 {
+	margin-bottom: 2rem;
+}
+
+.button-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.button-group img {
+	width: 100%;
+}
+
+.button-group button {
+	background-color: black;
+	border: 4px groove whitesmoke;
+	border-radius: 25px;
+	margin: 0.5em 1.5em 0.5em 1.5em;
+	padding: 0.5rem;
+}
+
+.button-group button:disabled {
+	opacity: 0.6;
+	transform: none;
+}
+
+.button-group button:hover,
+#reset:hover {
+	opacity: 0.6;
+	cursor: pointer;
+	transform: translateY(3px);
+}
+
+#reset {
+	margin: 2rem;
+	height: 40px;
+	background-color: brown;
+	border: 3px ridge whitesmoke;
+	border-radius: 20px;
+	font-family: monospace;
+	align-self: center;
+}
+
+@media (min-width: 0px) {
+	.button-group button {
+		width: 32%;
+	}
+
+	#reset {
+		width: 40%;
+	}
+}
+
+@media (min-width: 375px) {
+	.button-group button,
+	#reset {
+		width: 35%;
+	}
+}
+
+@media (min-width: 768px) {
+	#player-choice {
+		flex-direction: row;
+	}
+
+	#player-choice b {
+		margin-inline: 3rem;
+	}
+
+	.button-group button,
+	#reset {
+		width: 20%;
+	}
+}
+
+@media (min-width: 1024px) {
+	.button-group button,
+	#reset {
+		width: 11%;
+	}
+}
+
+@media (min-width: 2560px) {
+	.button-group button,
+	#reset {
+		width: 6%;
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"outDir": "./public",
+		"allowJs": true,
+		"target": "ES6",
+		"rootDir": "./src",
+		"module": "ES2015"
+	},
+	"include": ["./src/**/*"]
+}

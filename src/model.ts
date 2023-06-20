@@ -1,5 +1,8 @@
-class PlayerModel {
-	constructor(winnerText, winnerColor) {
+export class PlayerModel {
+	score: number;
+	winnerLabel: { text: string; color: string };
+
+	constructor(winnerText: string, winnerColor: string) {
 		this.score = 0;
 		this.winnerLabel = {
 			text: winnerText,
@@ -8,13 +11,13 @@ class PlayerModel {
 	}
 }
 
-class HumanModel extends PlayerModel {
+export class HumanModel extends PlayerModel {
 	constructor(winnerText = "You Win", winnerColor = "#7cfc00") {
 		super(winnerText, winnerColor);
 	}
 }
 
-class ComputerModel extends PlayerModel {
+export class ComputerModel extends PlayerModel {
 	constructor(winnerText = "Computer Wins", winnerColor = "#dc143c") {
 		super(winnerText, winnerColor);
 	}
